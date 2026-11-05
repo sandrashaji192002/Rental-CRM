@@ -15,7 +15,10 @@ const PORT = process.env.APP_PORT || process.env.PORT || 5000;
       console.log(`API running on http://localhost:${PORT}`)
     );
   } catch (e) {
-    console.error('Error:', e.message);
+    console.error('Error:', e.message || e.code || e.name);
+    if (e.errors)
+      e.errors.forEach(x => console.error(' -', x.code, x.address, x.port));
+    console.error('DB target:', process.env.DB_HOST, process.env.DB_PORT);
     process.exit(1);
   }
 })();
