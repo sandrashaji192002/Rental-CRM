@@ -1,0 +1,11 @@
+{
+  "name": "rental-crm",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "install:all": "npm --prefix 00-backend install && npm --prefix 00-frontend install",
+    "build": "npm run install:all && npm --prefix 00-frontend run build",
+    "start": "npm --prefix 00-backend start",
+    "seed": "npm --prefix 00-backend run seed"
+  }
+}
