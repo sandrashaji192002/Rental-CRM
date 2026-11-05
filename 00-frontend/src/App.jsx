@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from './auth';
 import { AdminLayout, MobileLayout, OpsLayout } from './layouts';
 import Login from './pages/Login';
@@ -17,7 +17,9 @@ import Reports from './pages/Reports';
 
 function Guard({ role, children }) {
   const { user } = useAuth();
-  if (!user) return <Navigate to="/login" replace />;
+  const { pathname } = useLocation();
+  const mobile = pathname === '/m' || pathname.startsWith('/m/');
+  if (!user) return <Navigate to={mobile ? '/m/login' : '/login'} replace />;
   if (role && user.role !== role) return <Navigate to="/" replace />;
   return children;
 }
@@ -50,6 +52,7 @@ export default function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/m/login" element={<Login mobile />} />
       <Route
         path="/admin"
         element={

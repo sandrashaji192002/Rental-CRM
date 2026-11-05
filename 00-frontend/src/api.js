@@ -16,7 +16,9 @@ api.interceptors.response.use(
       !err.config.url.includes('/auth/login')
     ) {
       localStorage.clear();
-      window.location.href = '/login';
+      window.location.href = window.location.pathname.startsWith('/m')
+        ? '/m/login'
+        : '/login';
     }
     return Promise.reject(err);
   }

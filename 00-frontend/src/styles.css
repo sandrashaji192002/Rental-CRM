@@ -350,9 +350,11 @@ textarea {
 .phone {
   width: 100%;
   max-width: 430px;
+  height: 100dvh;
   height: 100vh;
   background: var(--bg);
   display: flex;
+  overflow: hidden;
   flex-direction: column;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
 }
@@ -871,4 +873,8 @@ label.inline {
 }
 .row-actions {
   flex-wrap: wrap;
+}
+.phone .login-wrap {
+  flex: 1;
+  min-height: 0;
 }
